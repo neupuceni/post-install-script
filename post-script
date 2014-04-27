@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# 
+# Postinstalaciona skripta za Ubuntu
+#
+
+echo "Postinstalaciona skripta za Ubuntu"
+echo "Skuvajte kafu, sedite i pričekajte..."
+echo ""
+echo "Ova skripta je prvenstveno namenjena za laptope koje pokreće"
+echo "Intel procesor i imaju dual grafiku (Intel-nVidia)."
+echo ""
+echo "Sva pitanja, sugestije, kritike na aleksa.rodic@gmx.com."
+echo ""
+
+#dodavanje ppa
+echo '=> Dodavanje izvora'
+#sudo add-apt-repository ppa:webupd8team/java
+#sudo add-apt-repository ppa:webupd8team/y-ppa-manager
+#sudo add-apt-repository ppa:nilarimogard/webupd8
+#sudo add-apt-repository ppa:linrunner/tlp
+#sudo add-apt-repository ppa:atareao/atareao
+#sudo add-apt-repository ppa:mc3man/trusty-media
+#sudo add-apt-repository ppa:jre-phoenix/ppa
+
+sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ trusty partner' >> /etc/apt/sources.list.d/canonical_partner.list"
+
+#echo "deb http://deb.torproject.org/torproject.org trusty main" | sudo tee -a /etc/apt/sources.list
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 886DDD89
+
+echo 'Gotovo.'
+
+#update
+echo '=> Update repozitorijuma'
+sudo apt-get update
+echo 'Gotovo.'
+
+#instalacija aplikacija
+echo '=> Instalacija aplikacija, drajvera, dodataka i kodeka'
+
+sudo apt-get install unace rar unrar p7zip-rar p7zip 
+
+#grafika/video
+sudo apt-get install sharutils uudeview mpack arj cabextract file-roller libraw-bin ufraw ufraw-batch gimp-ufraw rawtherapee vlc inkscape gimp gimp-data-extras 
+
+#wine emulacija
+sudo apt-get install wine playonlinux
+
+#kud i kamp
+sudo apt-get install y-ppa-manager unity-tweak-tool git youtube-dlg libreoffice-style-sifr libreoffice-pdfimport bleachbit gparted  unetbootin 
+
+#skajp fix
+sudo apt-get install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
+
+#indikatori
+sudo apt-get install pidgin-indicator my-weather-indicator indicator-cpufreq
+
+#kodeci
+sudo apt-get install ubuntu-restricted-extras libavcodec-extra libdvdread4 gstreamer0.10-ffmpeg
+
+#drajveri
+sudo apt-get install nvidia-prime prime-indicator mesa-utils linux-tools-common linux-tools-generic linux-cloud-tools-generic vdpauinfo tlp tlp-rdw thermald
+
+#internet
+sudo apt-get install skype openssh-server ktorrent samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui 
+
+echo 'Gotovo.'
+
+#postinstalacioni proces
+echo '=> Postinstalacioni proces'
+sudo /usr/share/doc/libdvdread4/install-css.sh
+sudo tlp start
+echo 'Gotovo.'
+
+clear
+echo "To je to. Dosta je trajalo, ali eto... :) Uzivajte!"
+
+
+
+
+
+
