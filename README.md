@@ -1,5 +1,33 @@
-Postinstalciona skripta za Ubuntu
-===================
+Start Ubuntu
+=========
 
-Samo za 14.04 i laptope sa dual grafikom (nVidia - Intel).
-Primarno napravljeno za lične potrebe.
+Post-install script for Ubuntu and Ubuntu-based distros.
+
+  - App installation (Java, Dropbox, Skype, Indicators, Wine, Tor, ...)
+  - Notebook driver installation (nVidia Prime and Thermald)
+
+To do
+----
+
+  - Full list of apps
+  - AMD/ATI drivers
+  - Hardware info
+
+Version
+----
+
+0.2
+
+Installation
+--------------
+
+```sh
+git clone git@github.com:neupuceni/post-install-script.git
+cd post-install-script
+./post-install.sh
+```
+
+License
+----
+
+WTFPL
