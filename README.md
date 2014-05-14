@@ -21,10 +21,11 @@ Version
 Installation
 --------------
 
+
 ```sh
 git clone git@github.com:neupuceni/post-install-script.git
 cd post-install-script
-./post-install.sh
+./post-script 
 ```
 
 License
