@@ -1,82 +1,186 @@
 #!/bin/bash
 
 # 
-# Postinstalaciona skripta za Ubuntu
+# Post-install script for Ubuntu and Ubuntu based distros
 #
 
-echo "Postinstalaciona skripta za Ubuntu"
-echo "Skuvajte kafu, sedite i pričekajte..."
-echo ""
-echo "Ova skripta je prvenstveno namenjena za laptope koje pokreće"
-echo "Intel procesor i imaju dual grafiku (Intel-nVidia)."
-echo ""
-echo "Sva pitanja, sugestije, kritike na aleksa.rodic@gmx.com."
-echo ""
+function intro {
+	echo ""
+	echo "=> Post-install script for Ubuntu/Ubuntu based distros"
+	echo ""
+	echo "=> Info"
+	echo "Follow the steps and everything will be all right."
+	echo ""
+	echo "=> GitHub"
+	echo "For more informations visit https://github.com/neupuceni/post-install-script."
+}
 
-#dodavanje ppa
-echo '=> Dodavanje izvora'
-#sudo add-apt-repository ppa:webupd8team/java
-#sudo add-apt-repository ppa:webupd8team/y-ppa-manager
-#sudo add-apt-repository ppa:nilarimogard/webupd8
-#sudo add-apt-repository ppa:linrunner/tlp
-#sudo add-apt-repository ppa:atareao/atareao
-#sudo add-apt-repository ppa:mc3man/trusty-media
-#sudo add-apt-repository ppa:jre-phoenix/ppa
+function options {
+	echo ""
+	echo "=> Options:"
+	echo ""
+	echo "	1) Install apps (Java, Dropbox, Skype, Indicators, Wine, Tor)"
+	echo "	2) Install nVidia Prime (GPU, notebook only)"
+	echo "	3) Install Intel (CPU, notebook only)"
+	echo "	4) Install TLP (Advanced Power Management, notebook only)"
+	echo ""
+	echo "	7) Hardware info"
+	echo "	8) Help"
+	echo "	9) Exit"
+	echo ""
+}
 
-sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ trusty partner' >> /etc/apt/sources.list.d/canonical_partner.list"
+function update {
+	echo ""
+	echo '=> Repo update'
+		sudo apt-get update
+	echo 'Finished'
+	echo ""
+}
 
-#echo "deb http://deb.torproject.org/torproject.org trusty main" | sudo tee -a /etc/apt/sources.list
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 886DDD89
+function clean {
+	echo ""
+	echo '=> Repo update'
+		sudo apt-get autoclean
+	echo ""
+}
 
-echo 'Gotovo.'
+# Java, Dropbox, Skype, Indicators, Wine, Tor
+function first {
+# ++ ppa
+	echo "=> PPA-s"
 
-#update
-echo '=> Update repozitorijuma'
-sudo apt-get update
-echo 'Gotovo.'
+		sudo add-apt-repository ppa:webupd8team/java
+		sudo add-apt-repository ppa:webupd8team/y-ppa-manager
+		sudo add-apt-repository ppa:nilarimogard/webupd8
+		sudo add-apt-repository ppa:atareao/atareao
+		sudo add-apt-repository ppa:mc3man/trusty-media
+		sudo add-apt-repository ppa:jre-phoenix/ppa
 
-#instalacija aplikacija
-echo '=> Instalacija aplikacija, drajvera, dodataka i kodeka'
+		sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ trusty partner' >> /etc/apt/sources.list.d/canonical_partner.list"
+		echo "deb http://deb.torproject.org/torproject.org trusty main" | sudo tee -a /etc/apt/sources.list
 
-sudo apt-get install unace rar unrar p7zip-rar p7zip 
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 886DDD89
 
-#grafika/video
-sudo apt-get install sharutils uudeview mpack arj cabextract file-roller libraw-bin ufraw ufraw-batch gimp-ufraw rawtherapee vlc inkscape gimp gimp-data-extras 
+	
+	update #repo update
 
-#wine emulacija
-sudo apt-get install wine playonlinux
+# ++ install process
+	echo "=> Instal process"
 
-#kud i kamp
-sudo apt-get install y-ppa-manager unity-tweak-tool git youtube-dlg libreoffice-style-sifr libreoffice-pdfimport bleachbit gparted  unetbootin 
+	#zip/rar/...
+	sudo apt-get install unace rar unrar p7zip-rar p7zip 
 
-#skajp fix
-sudo apt-get install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
+	#graphic/video/...
+	sudo apt-get install sharutils uudeview mpack arj cabextract file-roller libraw-bin ufraw ufraw-batch gimp-ufraw rawtherapee vlc inkscape gimp gimp-data-extras 
 
-#indikatori
-sudo apt-get install pidgin-indicator my-weather-indicator indicator-cpufreq
+	#wine
+	sudo apt-get install wine playonlinux
 
-#kodeci
-sudo apt-get install ubuntu-restricted-extras libavcodec-extra libdvdread4 gstreamer0.10-ffmpeg
+	#tools
+	sudo apt-get install y-ppa-manager unity-tweak-tool git youtube-dlg libreoffice-style-sifr libreoffice-pdfimport bleachbit gparted unetbootin phantomjs imagemagick pdftk
 
-#drajveri
-sudo apt-get install nvidia-prime prime-indicator mesa-utils linux-tools-common linux-tools-generic linux-cloud-tools-generic vdpauinfo tlp tlp-rdw thermald
+	#skype fix 14.04
+	sudo apt-get install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
 
-#internet
-sudo apt-get install skype openssh-server ktorrent samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui 
+	#indicators
+	sudo apt-get install pidgin-indicator my-weather-indicator indicator-cpufreq
 
-echo 'Gotovo.'
+	#codecs
+	sudo apt-get install ubuntu-restricted-extras libavcodec-extra libdvdread4 gstreamer0.10-ffmpeg
 
-#postinstalacioni proces
-echo '=> Postinstalacioni proces'
-sudo /usr/share/doc/libdvdread4/install-css.sh
-sudo tlp start
-echo 'Gotovo.'
+	#internet
+	sudo apt-get install skype openssh-server ktorrent samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui
+ 
+# ++ post-install process
+	echo ""
+	echo "=> Post install process"
 
+		sudo /usr/share/doc/libdvdread4/install-css.sh
+
+	clean #autoclean process
+
+	clear
+	echo "Finished"
+}
+
+#nVidia Prime
+function second {
+
+# ++ install process
+	sudo apt-get install nvidia-prime prime-indicator mesa-utils linux-tools-common linux-tools-generic linux-cloud-tools-generic vdpauinfo
+
+	clean #autoclean process
+
+	clear
+	echo "Finished"
+}
+
+#Intel
+function third {
+
+# ++ install process
+	sudo apt-get install thermald
+
+	clean #autoclean process
+
+	clear
+	echo "Finished"
+}
+
+#TLP
+function fourth {
+
+# ++ ppa
+	echo "=> PPA-s"
+		sudo add-apt-repository ppa:linrunner/tlp
+	echo ""
+# ++ install process
+	echo "=> Instal process"
+		sudo apt-get install tlp tlp-rdw
+	echo ""
+# ++ post-install process
+	echo "=> Post install process"
+		sudo tlp start
+
+	clean #autoclean process
+
+	clear
+	echo "Finished"
+}
+
+#main
+function main {
 clear
-echo "To je to. Dosta je trajalo, ali eto... :) Uzivajte!"
+intro
+options
+echo "Enter the number:"
+read -${BASH_VERSION+e}r option
+case $option in
+    1)
+        echo "=> App installer"
+	first
+	exit
+        ;;
+    2)
+        echo "=> nVidia Prime"
+	second
+	exit
+        ;;
+    3)
+        echo "=> Intel"
+	third
+	exit
+        ;;
+    4)
+        echo "=> TLP"
+	fourth
+	exit
+        ;;
+    *)
+        echo "Incorrect! Start again."
+	exit
+esac
+}
 
-
-
-
-
-
+main
