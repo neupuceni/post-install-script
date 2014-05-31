@@ -23,7 +23,7 @@ Installation
 
 
 ```sh
-git clone git@github.com:neupuceni/post-install-script.git
+git clone https://github.com/neupuceni/post-install-script.git
 cd post-install-script
 ./post-script 
 ```
