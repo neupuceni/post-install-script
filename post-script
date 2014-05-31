@@ -95,7 +95,7 @@ function first {
 	sudo apt-get install ubuntu-restricted-extras libavcodec-extra libdvdread4 gstreamer0.10-ffmpeg
 
 	#internet
-	sudo apt-get install skype openssh-server ktorrent samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui
+	sudo apt-get install skype openssh-server deluge samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui
 
 	#bitcoin
 	sudo apt-get install python-qt4 python-pip
