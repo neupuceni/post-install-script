@@ -57,8 +57,13 @@ function first {
 		sudo add-apt-repository ppa:mc3man/trusty-media
 		sudo add-apt-repository ppa:jre-phoenix/ppa
 
+		#tor
 		sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ trusty partner' >> /etc/apt/sources.list.d/canonical_partner.list"
 		echo "deb http://deb.torproject.org/torproject.org trusty main" | sudo tee -a /etc/apt/sources.list
+
+		#chrome
+		wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+		sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 886DDD89
 
@@ -91,6 +96,16 @@ function first {
 
 	#internet
 	sudo apt-get install skype openssh-server ktorrent samba system-config-samba cifs-utils winbind filezilla nautilus-dropbox vidalia privoxy tor oracle-java7-installer oracle-java8-installer pgld pglcmd pglgui
+
+	#bitcoin
+	sudo apt-get install python-qt4 python-pip
+	sudo apt-get install python-slowaes
+	sudo apt-get install electrum
+
+	#chrome
+	sudo apt-get install google-chrome-stable
+	
+
  
 # ++ post-install process
 	echo ""
